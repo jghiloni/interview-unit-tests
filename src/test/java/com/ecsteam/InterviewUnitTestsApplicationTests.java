@@ -104,6 +104,18 @@ public class InterviewUnitTestsApplicationTests {
 		System.out.format("testMissingWord: Call /word/ took %d ms\n", timer);
 
 		Assert.assertEquals("HTTP Response should be 404", 404, responseEntity.getStatusCodeValue());
+
+		start = System.currentTimeMillis();
+		responseEntity = restTemplate.getForEntity("{baseUrl}/word",
+			AnagramErrorResponse.class, baseUrl, word);
+		end = System.currentTimeMillis();
+
+		timer = end - start;
+
+		System.out.format("testMissingWord: Call /word took %d ms\n", timer);
+
+		Assert.assertEquals("HTTP Response should be 404", 404, responseEntity.getStatusCodeValue());
+
 	}
 }
 
